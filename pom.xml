@@ -14,13 +14,14 @@
         <module>toeic-core-dao-impl</module>
         <module>toeic-core-service</module>
         <module>toeic-core-service-impl</module>
-        <module>toeic-web-logic</module>
         <module>toeic-core-common</module>
         <module>toeic-core-data</module>
         <module>toeic-core-dto</module>
         <module>toeic-core-utils</module>
         <module>toeic-core-persistence-data</module>
        <module>toeic-core-vidutest</module>
+        <module>toeic-weblogic</module>
+
     </modules>
 
     <properties>
