@@ -16,11 +16,15 @@
         <module>toeic-core-service-impl</module>
         <module>toeic-core-common</module>
         <module>toeic-core-data</module>
-        <module>toeic-core-dto</module>
         <module>toeic-core-utils</module>
         <module>toeic-core-persistence-data</module>
        <module>toeic-core-vidutest</module>
         <module>toeic-weblogic</module>
+        <module>toeic-coredto</module>
+        <module>toeic-core-web</module>
+        <module>toeic-coreutils</module>
+        <module>toeic-coreservice</module>
+
 
     </modules>
 

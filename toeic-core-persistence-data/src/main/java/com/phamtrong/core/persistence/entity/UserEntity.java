@@ -1,5 +1,6 @@
 package com.phamtrong.core.persistence.entity;
 
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
