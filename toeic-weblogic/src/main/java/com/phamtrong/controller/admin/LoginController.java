@@ -8,19 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/admin-home.html")
-public class HomeController  extends HttpServlet {
+@WebServlet("/login.html")
+public class LoginController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher rd =  request.getRequestDispatcher("/views/admin/admin.jsp");
+        RequestDispatcher rd =  request.getRequestDispatcher("/views/web/login.jsp");
         rd.forward(request,response);
-
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
     }
 
 }
