@@ -1,16 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title><dec:title default="login Page" /></title>
+    <title><dec:title default="login Page"/></title>
     <link rel="stylesheet" href="<c:url value='/template/admin/css/bootstrap.min.css'/>"/>
     <link rel="stylesheet" href="<c:url value='/template/admin/font-awesome/4.2.0/css/font-awesome.min.css'/>"/>
     <link rel="stylesheet" href="<c:url value='/template/admin/fonts/fonts.googleapis.com.css'/>"/>
-    <link rel="stylesheet" href="<c:url value='/template/admin/css/ace.min.css'/>" class="ace-main-stylesheet" id="main-ace-style"/>
+    <link rel="stylesheet" href="<c:url value='/template/admin/css/ace.min.css'/>" class="ace-main-stylesheet"
+          id="main-ace-style"/>
     <script src="<c:url value='/template/admin/js/ace-extra.min.js'/>"></script>
     <link rel="stylesheet" href="<c:url value='/template/admin/vidu/style.css'/>"/>
-    <dec:head />
+    <dec:head/>
 </head>
 <body class="login-layout">
 <%--<%@ include file="/common/admin/header.jsp"%>--%>
@@ -21,12 +22,12 @@
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
                 <div class="login-container">
-                    <%@ include file="/common/login/header.jsp"%>
+                    <%@ include file="/common/login/header.jsp" %>
                     <div class="position-relative">
                         <dec:body/>
                     </div>
                     <div class="navbar-fixed-top align-right">
-                        <br />
+                        <br/>
                         &nbsp;
                         <a id="btn-login-dark" href="#">Dark</a>
                         &nbsp;

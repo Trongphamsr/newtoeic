@@ -23,6 +23,7 @@
         <module>toeic-core-web</module>
         <module>toeic-coreutils</module>
         <module>toeic-coreservice</module>
+        <module>toeic-api-test</module>
 
 
     </modules>
@@ -39,6 +40,8 @@
 
         <sitemesh.version>2.4.2</sitemesh.version>
         <jstl.version>1.2</jstl.version>
+
+        <beanutils.version>1.9.3</beanutils.version>
 
 
     </properties>
@@ -97,6 +100,13 @@
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>${jstl.version}</version>
+        </dependency>
+
+        <!--beanutils-->
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>${beanutils.version}</version>
         </dependency>
 
     </dependencies>

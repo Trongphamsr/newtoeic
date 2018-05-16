@@ -2,7 +2,7 @@
 <suite name="TestAll">
     <test name="case1">
         <classes>
-            <!--<class name="com.phamtrong.core.test.RoleTest"/>-->
+            <class name="com.phamtrong.api.test.LoginTest"/>
         </classes>
     </test>
 </suite>
