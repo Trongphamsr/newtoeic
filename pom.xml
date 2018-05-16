@@ -12,8 +12,6 @@
         <module>toeic-web</module>
         <module>toeic-core-dao</module>
         <module>toeic-core-dao-impl</module>
-        <module>toeic-core-service</module>
-        <module>toeic-core-service-impl</module>
         <module>toeic-core-common</module>
         <module>toeic-core-data</module>
         <module>toeic-core-persistence-data</module>
@@ -22,8 +20,9 @@
         <module>toeic-coredto</module>
         <module>toeic-core-web</module>
         <module>toeic-coreutils</module>
-        <module>toeic-coreservice</module>
         <module>toeic-api-test</module>
+        <module>toeic-core-servicece</module>
+        <module>toeic-core-servicece-impl</module>
 
 
     </modules>
