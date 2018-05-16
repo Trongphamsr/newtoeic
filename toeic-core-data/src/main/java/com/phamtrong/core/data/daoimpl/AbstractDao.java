@@ -4,6 +4,7 @@ package com.phamtrong.core.data.daoimpl;
 import com.phamtrong.core.common.constant.CoreConstant;
 import com.phamtrong.core.common.ultils.HibernateUtil;
 import com.phamtrong.core.data.dao.GenericDao;
+
 import org.apache.log4j.Logger;
 import org.hibernate.*;
 

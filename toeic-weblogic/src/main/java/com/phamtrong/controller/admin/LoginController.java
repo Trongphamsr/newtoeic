@@ -39,8 +39,8 @@ public class LoginController extends HttpServlet {
 //        String name= request.getParameter("name");
 //        String password= request.getParameter("password");
 
-//        UserCommand command = FormUtil.populate(UserCommand.class, request);
-//        UserDTO pojo= command.getPojo();
+        UserCommand command = FormUtil.populate(UserCommand.class, request);
+        UserDTO pojo= command.getPojo();
 
         RequestDispatcher rd =  request.getRequestDispatcher("/views/web/login.jsp");
         rd.forward(request,response);
