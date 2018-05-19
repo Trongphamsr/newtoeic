@@ -10,26 +10,26 @@ public class LoginTest {
     private transient final Logger log = Logger.getLogger(this.getClass());
     @Test
     public void chekIsUserExist(){
-        UserDao userDao = new UserDaoImpl();
-        String name="admin";
-        String password="123456";
-        UserEntity entity = userDao.isUserExist(name, password);
-
-        if(entity!=null){
-            log.error("login success");
-        }else{
-            log.error("login false");
-        }
+//        UserDao userDao = new UserDaoImpl();
+//        String name="admin";
+//        String password="123456";
+//        UserEntity entity = userDao.isUserExist(name, password);
+//
+//        if(entity!=null){
+//            log.error("login success");
+//        }else{
+//            log.error("login false");
+//        }
 
     }
 
 
     @Test
     public void chekFindRoleUser(){
-        UserDao userDao = new UserDaoImpl();
-        String name="admin";
-        String password="123456";
-        UserEntity entity = userDao.isUserExist(name, password);
-        log.error(entity.getRoleEntity().getRoleId()+" - "+ entity.getRoleEntity().getName());
+//        UserDao userDao = new UserDaoImpl();
+//        String name="admin";
+//        String password="123456";
+//        UserEntity entity = userDao.isUserExist(name, password);
+//        log.error(entity.getRoleEntity().getRoleId()+" - "+ entity.getRoleEntity().getName());
     }
 }

@@ -2,6 +2,7 @@ package com.phamtrong.core.data.dao;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 public interface GenericDao<ID extends Serializable, T> {
     // interface viet phuong thuc k co than ham, khac voi class
@@ -16,7 +17,7 @@ public interface GenericDao<ID extends Serializable, T> {
     T findById (ID var1);
     // list->kieu liet
     // size->kieu int nv de lay ca 2 ta dung object
-    Object[] findByProperty(String property, Object value, String sortExpression, String sortDirection);
+    Object[] findByProperty(Map<String,Object> property , String sortExpression, String sortDirection, Integer offset, Integer limit);
 
     Integer delete(List<ID> ids);
 }

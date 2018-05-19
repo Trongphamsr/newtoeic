@@ -1,16 +1,18 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: PHAMTRONG
-  Date: 5/14/2018
-  Time: 12:39 AM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="span6">Copyright &copy 2013 Shapebootstrap | All Rights Reserved  <br>
+                <small>Aliquam tincidunt mauris eu risus.</small>
+            </div>
+            <div class="span6">
+                <div class="social pull-right">
+                    <a href="#"><img src="img/social/googleplus.png" alt=""></a>
+                    <a href="#"><img src="img/social/dribbble.png" alt=""></a>
+                    <a href="#"><img src="img/social/twitter.png" alt=""></a>
+                    <a href="#"><img src="img/social/dribbble.png" alt=""></a>
+                    <a href="#"><img src="img/social/rss.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

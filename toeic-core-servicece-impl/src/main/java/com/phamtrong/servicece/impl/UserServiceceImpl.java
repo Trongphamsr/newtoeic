@@ -8,15 +8,27 @@ import com.phamtrong.core.servicece.UserServicece;
 import com.phamtrong.core.utils.UserBeanUtil;
 
 public class UserServiceceImpl implements UserServicece {
+//    public UserDTO isUserExist(UserDTO dto) {
+//        UserDao userDao = new UserDaoImpl();
+//        UserEntity entity = userDao.isUserExist(dto.getName(),dto.getPassword());
+//        return UserBeanUtil.entity2Dto(entity);
+//    }
+//
+//    public UserDTO findRoleByUser(UserDTO dto) {
+//        UserDao userDao = new UserDaoImpl();
+//        UserEntity entity = userDao.findRoleByUser(dto.getName(),dto.getPassword());
+//        return UserBeanUtil.entity2Dto(entity);
+//    }
+
     public UserDTO isUserExist(UserDTO dto) {
         UserDao userDao = new UserDaoImpl();
-        UserEntity entity = userDao.isUserExist(dto.getName(),dto.getPassword());
+        UserEntity entity = userDao.findUserByUsernameAndPassword(dto.getName(),dto.getPassword());
         return UserBeanUtil.entity2Dto(entity);
     }
 
     public UserDTO findRoleByUser(UserDTO dto) {
         UserDao userDao = new UserDaoImpl();
-        UserEntity entity = userDao.findRoleByUser(dto.getName(),dto.getPassword());
+        UserEntity entity = userDao.findUserByUsernameAndPassword(dto.getName(),dto.getPassword());
         return UserBeanUtil.entity2Dto(entity);
     }
 }

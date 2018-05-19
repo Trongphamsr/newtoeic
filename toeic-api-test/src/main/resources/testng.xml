@@ -3,6 +3,8 @@
     <test name="case1">
         <classes>
             <class name="com.phamtrong.api.test.LoginTest"/>
+            <class name="com.phamtrong.api.test.ListenGuidelineTest"/>
+            <class name="com.phamtrong.api.test.reviewHasMap"/>
         </classes>
     </test>
 </suite>
