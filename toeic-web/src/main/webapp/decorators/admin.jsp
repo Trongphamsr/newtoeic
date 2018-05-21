@@ -67,7 +67,7 @@
 
 </div>
 <!-- /.main-container -->
-
+<script src="<c:url value='/template/admin/assets/js/jquery.2.1.1.min.js' />"></script>
 <script src="<c:url value='/template/admin/assets/js/bootstrap.min.js' />"></script>
 <script src="<c:url value='/template/admin/assets/js/jquery-ui.custom.min.js' />"></script>
 <script src="<c:url value='/template/admin/assets/js/jquery.ui.touch-punch.min.js' />"></script>
