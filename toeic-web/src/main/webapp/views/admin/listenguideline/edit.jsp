@@ -40,6 +40,7 @@
                                 ${messageResponse}
                         </div>
                     </c:if>
+
                     <%--<form action="${formUrl}" method="post" enctype="multipart/form-data">--%>
                         <%--<div class="form-group">--%>
                             <%--<label class="col-sm-3 control-label no-padding-right"><fmt:message key="label.guideline.title" bundle="${lang}"/> </label>--%>
@@ -70,21 +71,24 @@
                         <%--</div>--%>
                     <%--</form>--%>
 
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right"><fmt:message key="label.guideline.title" bundle="${lang}"/> </label>
-                        <div class="col-sm-9">
-                            <h1>this is a heading</h1>
-                            <P>this is a paragrap</P>
-                            <p>this in another paragrap</p>
-                        </div>
-                    </div>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="col-sm-3 control-label no-padding-right"><fmt:message key="label.guideline.title" bundle="${lang}"/> </label>--%>
+                        <%--<div class="col-sm-9">--%>
+                            <%--<h1>this is a heading</h1>--%>
+                            <%--<P class="text">this is a paragrap</P>--%>
+                            <%--<p>this in another paragrap</p>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
 
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right"><fmt:message key="label.guideline.title" bundle="${lang}"/> </label>
-                        <div class="col-sm-9">
-                            <button>click</button>
-                        </div>
-                    </div>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="col-sm-3 control-label no-padding-right"><fmt:message key="label.guideline.title" bundle="${lang}"/> </label>--%>
+                        <%--<div class="col-sm-9">--%>
+                            <%--<button onclick="hideAllWhenClickButton()" id="btn-hide">click</button>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+
+                    <input type="checkbox" id="sex" onchange="changeValueCheckbox()">
+                    <p id="textSex"></p>
 
                 </div>
             </div>
@@ -93,12 +97,19 @@
 </div>
 <script>
     $(document).ready(function(){
-        hideAllWhenClickButton();
+        // hideAllWhenClickButton();
     });
     function  hideAllWhenClickButton(){
-        $("button").click(function(){
-           $("p").hide();
+        $("#btn-hide").click(function(){
+           $(".text").hide();
         });
+    }
+    function changeValueCheckbox(){
+        if($('#sex').prop('checked')==true){
+            $('textSex').html('<h1>Male</h1>');
+        }else{
+            $('textSex').html('<h1>Female</h1>');
+        }
     }
 </script>
 </body>

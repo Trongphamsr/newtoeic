@@ -11,6 +11,9 @@ public class WebConstant {
     public static final String ROLE_USER = "MANAGER";
     public static final String URL_LIST = "url_list";
     public static final String URL_EDIT = "url_edit";
+    public static final String URL_CLOSEST_METHOD ="url_closest_method";
+    public static final String URL_FIND_METHOD="url-find-method";
+    public static final String URL_EACH_METHOD="url_each_method";
     public static final String LISTENGUIDELINE = "listenguideline";
     public static final String INSERT_UPDATE = "insert_update";
     public static final String REDIRECT_INSERT = "redirect_insert";
