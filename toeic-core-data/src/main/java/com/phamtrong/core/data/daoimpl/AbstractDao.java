@@ -52,7 +52,8 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID,T>
         return list;
     }
 
-    public T update(T entity) {
+//    public T update(T entity) {
+        public T update(T entity) {
         // sung merge
         T result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();

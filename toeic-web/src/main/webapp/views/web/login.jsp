@@ -1,6 +1,9 @@
 <%@ include file="/common/taglib.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:url var="formUrl" value="/login.html"/>
+<c:url var="changeLogin" value="/login-change.html">
+    <c:param name="urlType" value="change_login"/>
+</c:url>
 <html>
 <head>
     <title>login page</title>
@@ -37,9 +40,13 @@
 
                     <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" name="pojo.password" class="form-control" placeholder="Password" />
+															<input id="myInput" type="password" name="pojo.password" class="form-control" placeholder="Password" />
 															<i class="ace-icon fa fa-lock"></i>
-														</span>
+														</span><br/>
+                                                        <input type="checkbox" onclick="myFunction()">Show Password
+                                                        <a href="${changeLogin}">change password</a><br/><br/>
+                                                        <input type="checkbox" onclick="">rememmber Password
+                                                        <a href="">forget password</a>
                     </label>
 
                     <%--<label class="block clearfix">--%>
@@ -63,6 +70,15 @@
         </div><!-- /.widget-main -->
     </div><!-- /.widget-body -->
 </div><!-- /.login-box -->
-
+<script>
+    function myFunction() {
+        var x = document.getElementById("myInput");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
 </body>
 </html>

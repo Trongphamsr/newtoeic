@@ -124,7 +124,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
         <!--upload -->
         <dependency>
             <groupId>commons-fileupload</groupId>
@@ -136,7 +135,21 @@
             <artifactId>commons-io</artifactId>
             <version>1.3.2</version>
         </dependency>
-
-
+        <!--excell poi-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.16-beta1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.11-beta2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.11</version>
+        </dependency>
     </dependencies>
 </project>

@@ -20,9 +20,9 @@ public class UploadUtil {
     private final int maxMemorySize = 1024*1024*3; // 3MBL
     private final int maxRequestSize = 1024*1024*50; // 50MB
 
-    public Object[] wrireOrUpdateFile(HttpServletRequest request, Set<String> titleValue, String path) throws FileUploadException, Exception{
+    public Object[] wrireOrUpdateFile(HttpServletRequest request, Set<String> titleValue, String path){
         ServletContext context =request.getServletContext();
-        String address=context.getRealPath("image");
+        String address=context.getRealPath("uploadfile");
         boolean check = true;
         String fileLocation = null;
         String name=null;
@@ -43,36 +43,45 @@ public class UploadUtil {
         ServletFileUpload upload = new ServletFileUpload(factory);
         // Set overall request size constraint
         upload.setSizeMax(maxRequestSize);
-        // Parse the request
-        List<FileItem> items = upload.parseRequest(request);
-        for (FileItem item : items){
-            // neu chi upload thoi
-            if(!item.isFormField()){
-                String fileName = item.getName();
-                if(StringUtils.isNotBlank(fileName)){
-                    File uploadedFile = new File(address+File.separator+path+File.separator+ fileName);
-                    fileLocation=address+File.separator+path+File.separator+ fileName;
-                    name=fileName;
-                    boolean isExist = uploadedFile.exists();
-                    if(isExist){
-                        if(uploadedFile.delete()){
-                            item.write(uploadedFile);
-                        }else{
+        try {
+            // Parse the request
+            List<FileItem> items = upload.parseRequest(request);
+            for (FileItem item : items){
+                // neu chi upload thoi
+                if(!item.isFormField()){
+                    String fileName = item.getName();
+                    if(StringUtils.isNotBlank(fileName)){
+                        File uploadedFile = new File(address+File.separator+path+File.separator+ fileName);
+                        fileLocation=address+File.separator+path+File.separator+ fileName;
+                        name=fileName;
+                        boolean isExist = uploadedFile.exists();
+                        try {
+
+                            if(isExist){
+                                uploadedFile.delete();
+                                item.write(uploadedFile);
+                            }else{
+                                item.write(uploadedFile);
+                            }
+                        }catch (Exception e){
                             check = false;
+                            log.error(e.getMessage(),e);
                         }
-                    }else{
-                        item.write(uploadedFile);
                     }
-                }
-            }else {
-                if(titleValue!=null){
-                    String nameField=item.getFieldName();
-                    String valueField = item.getString();
-                    if(titleValue.contains(nameField)){
-                        mapReturnValue.put(nameField,valueField);
+                }else {
+                    if(titleValue!=null){
+                        String nameField=item.getFieldName();
+                        String valueField = item.getString();
+                        if(titleValue.contains(nameField)){
+                            mapReturnValue.put(nameField,valueField);
+                        }
                     }
                 }
             }
+
+        }catch (FileUploadException e){
+            check = false;
+            log.error(e.getMessage(),e);
         }
         return new  Object[]{check, fileLocation,name,mapReturnValue};
     }

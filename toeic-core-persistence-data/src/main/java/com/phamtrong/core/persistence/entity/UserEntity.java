@@ -11,10 +11,13 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
+
     @Column(name="name")
     private String name;
+
     @Column(name="password")
     private String password;
+
     @Column(name="fullname")
     private String fullName;
     @Column(name="reateddate")

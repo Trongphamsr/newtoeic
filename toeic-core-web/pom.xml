@@ -6,10 +6,16 @@
         <artifactId>toeiclearning</artifactId>
         <groupId>com.phamtrong</groupId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>toeic-core-web</artifactId>
-
-
+    <dependencies>
+        <dependency>
+            <groupId>com.phamtrong</groupId>
+            <artifactId>toeic-core-servicece-impl</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 </project>

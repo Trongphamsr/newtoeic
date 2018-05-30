@@ -4,7 +4,6 @@ import com.phamtrong.command.JqueryCommand;
 import com.phamtrong.core.dto.JqueryDTO;
 import com.phamtrong.core.web.common.WebConstant;
 import com.phamtrong.core.web.utils.FormUtil;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

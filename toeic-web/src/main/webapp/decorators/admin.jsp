@@ -18,7 +18,7 @@
     <script type='text/javascript' src='<c:url value="/template/admin/js/jquery-2.2.3.min.js" />'></script>
     <script src="<c:url value='/template/admin/assets/js/jquery.2.1.1.min.js' />"></script>
     <link rel="stylesheet" href="<c:url value="/template/admin/css/global_admin_style.css"/>">
-    <script type="text/javascript" src="<c:url value="/template/admin/js/global_admin_script.js"/>"></script>
+    <%--<script type="text/javascript" src="<c:url value="/template/admin/js/global_admin_script.js"/>"></script>--%>
     <script type="text/javascript" src="<c:url value="/template/admin/js/demo.js"/>"></script>
     <script src="<c:url value='/template/admin/assets/js/jquery.validate.min.js' />"></script>
 
