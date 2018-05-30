@@ -158,6 +158,7 @@ public class UserController extends HttpServlet {
             validateRequireField(item);
             validateDuplicate(item,stringSet);
         }
+        SingletonServiceUtil.getUserDaoInstance().validateImportUser(excelValues);
     }
 
     private void validateDuplicate(UserImportDTO item, Set<String> stringSet) {
