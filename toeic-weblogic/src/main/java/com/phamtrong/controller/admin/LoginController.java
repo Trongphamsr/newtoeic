@@ -22,15 +22,26 @@ public class LoginController extends HttpServlet {
     private  final Logger log = Logger.getLogger(this.getClass());
     private final String CHANGE_LOGIN = "change_login";
     ResourceBundle bundle = ResourceBundle.getBundle("ApplicationResources");
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        UserCommand command = FormUtil.populate(UserCommand.class, request);
-        if (command.getUrlType() != null && command.getUrlType().equals(CHANGE_LOGIN)) {
-            RequestDispatcher rd = request.getRequestDispatcher("/views/web/changeLogin.jsp");
-            rd.forward(request, response);
-        }else{
+        String action = request.getParameter("action");
+//        UserCommand command = FormUtil.populate(UserCommand.class, request);
+
+//        if (command.getUrlType() != null && command.getUrlType().equals(CHANGE_LOGIN)) {
+//            RequestDispatcher rd = request.getRequestDispatcher("/views/web/changeLogin.jsp");
+//            rd.forward(request, response);
+//        }else{
+//            RequestDispatcher rd = request.getRequestDispatcher("/views/web/login.jsp");
+//            rd.forward(request, response);
+//        }
+
+        if (action.equals(WebConstant.LOGIN)) {
             RequestDispatcher rd = request.getRequestDispatcher("/views/web/login.jsp");
             rd.forward(request, response);
+        } else if(action.equals(WebConstant.LOGOUT)) {
+            SessionUtil.getInstance().remove(request, WebConstant.LOGIN_NAME);
+            response.sendRedirect("/home.html");
         }
     }
 
