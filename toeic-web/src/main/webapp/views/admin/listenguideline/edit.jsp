@@ -83,7 +83,7 @@
                                 <c:if test="${not empty item.pojo.content}">
                                     <c:set var="content" value="${item.pojo.content}"/>
                                 </c:if>
-                                <textarea name="pojo.content" cols="80" rows="10" id="listenGuidelineContent">${content}</textarea>
+                                <textarea name="pojo.content" cols="80" rows="10" id="ListenGuidelineContent">${content}</textarea>
                             </div>
                         </div>
 
@@ -131,7 +131,9 @@
 
     $(document).ready(function(){
         // hideAllWhenClickButton();
-        CKEDITOR.replace('listenGuidelineContent');
+       // CKEDITOR.replace('ListenGuidelineContent');
+        var editor = CKEDITOR.replace( 'ListenGuidelineContent' );
+        CKFinder.setupCKEditor( editor, '/ckfinder/' );
         $('#uploadFileImage').change(function(){
             readUrl(this,"viewImage");
         });
@@ -163,7 +165,7 @@
              });
          }
 
-         $( "#listenGuidelineContent" ).rules( "add", {
+         $( "#ListenGuidelineContent" ).rules( "add", {
              required: function(){
                  CKEDITOR.instances.listenGuidelineContent.updateElement();
              },

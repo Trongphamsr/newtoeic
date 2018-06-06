@@ -10,6 +10,7 @@ import com.phamtrong.core.servicece.RoleServicee;
 import com.phamtrong.core.servicece.UserServicece;
 import com.phamtrong.core.web.common.WebConstant;
 import com.phamtrong.core.web.utils.FormUtil;
+import com.phamtrong.core.web.utils.RequestUtil;
 import com.phamtrong.core.web.utils.SingletonServiceUtil;
 import com.phamtrong.core.web.utils.WebCommonUtil;
 import com.phamtrong.servicece.impl.RoleServiceeImpl;
@@ -52,6 +53,7 @@ public class UserController extends HttpServlet {
         UserDTO pojo = command.getPojo();
         if (command.getUrlType() != null && command.getUrlType().equals(WebConstant.URL_LIST)) {
             Map<String, Object> mapProperty = new HashMap<String, Object>();
+            RequestUtil.initSearchBean(request,command);
             Object[] objects = SingletonServiceUtil.getUserServiceInstance().findByProperty(mapProperty, command.getSortExpression(), command.getSortDirection(), command.getFirstItem(), command.getMaxPageItems());
             //command.setMaxPageItems(5);
             command.setListResult((List<UserDTO>) objects[1]);
@@ -85,13 +87,45 @@ public class UserController extends HttpServlet {
             rd.forward(request, response);
         } else if (command.getUrlType() != null && command.getUrlType().equals(VALIDATE_IMPORT)) {
             List<UserImportDTO> userImportDTOS= (List<UserImportDTO>) SessionUtil.getInstance().getValue(request,LIST_USER_IMPORT);
-            command.setMaxPageItems(3);
-            command.setUserImportDTOS(userImportDTOS);
-            command.setTotalItems(userImportDTOS.size());
+//            command.setMaxPageItems(3);
+////            RequestUtil.initSearchBean(request,command);
+////            command.setTotalItems(userImportDTOS.size());
+////            int fromIndex = command.getFirstItem();
+////            if(fromIndex>command.getTotalItems()){
+////                fromIndex=0;
+////                command.setFirstItem(0);
+////            }
+////            int toIndex=command.getFirstItem()+command.getMaxPageItems();
+////            if(userImportDTOS.size()>0){
+////                if(toIndex>userImportDTOS.size()){
+////                    toIndex=userImportDTOS.size();
+////                }
+////                command.setUserImportDTOS(userImportDTOS.subList(fromIndex,toIndex));
+////            }
+            command.setUserImportDTOS(returnListUserImport(command,userImportDTOS,request));
             request.setAttribute(WebConstant.LIST_ITEMS,command);
             RequestDispatcher rd = request.getRequestDispatcher("/views/admin/user/importuser.jsp");
             rd.forward(request, response);
         }
+    }
+
+    private List<UserImportDTO> returnListUserImport(UserCommand command, List<UserImportDTO> userImportDTOS, HttpServletRequest request) {
+            command.setMaxPageItems(3);
+            RequestUtil.initSearchBean(request,command);
+            command.setTotalItems(userImportDTOS.size());
+            int fromIndex = command.getFirstItem();
+            if(fromIndex>command.getTotalItems()){
+                fromIndex=0;
+                command.setFirstItem(0);
+            }
+            int toIndex=command.getFirstItem()+command.getMaxPageItems();
+            if(userImportDTOS.size()>0){
+                if(toIndex>userImportDTOS.size()){
+                    toIndex=userImportDTOS.size();
+                }
+//                command.setUserImportDTOS(userImportDTOS.subList(fromIndex,toIndex));
+            }
+        return userImportDTOS.subList(fromIndex,toIndex);
     }
 
     private Map<String, String> buildMapRedirectMessage(ResourceBundle bundle) {

@@ -1,6 +1,7 @@
 package com.phamtrong.controller.admin;
 
 import com.phamtrong.command.UserCommand;
+import com.phamtrong.core.common.ultils.SessionUtil;
 import com.phamtrong.core.dto.CheckLogin;
 import com.phamtrong.core.dto.UserDTO;
 import com.phamtrong.core.web.common.WebConstant;
@@ -57,6 +58,7 @@ public class LoginController extends HttpServlet {
         if(pojo!=null) {
             CheckLogin login = SingletonServiceUtil.getUserServiceInstance().checkLogin(pojo.getName(), pojo.getPassword());
             if (login.isUserExist()) {
+                SessionUtil.getInstance().putValue(request,WebConstant.LOGIN_NAME,pojo.getName());
                 if (login.getRoleName().equals(WebConstant.ROLE_ADMIN)) {
                     response.sendRedirect("/admin-home.html");
                 } else if (login.getRoleName().equals(WebConstant.ROLE_USER)) {
