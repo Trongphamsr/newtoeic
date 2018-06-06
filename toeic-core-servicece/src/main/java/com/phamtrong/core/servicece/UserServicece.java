@@ -17,4 +17,5 @@ public interface UserServicece {
     UserDTO updateUser(UserDTO userDTO);
     CheckLogin checkLogin(String name, String password);
     void validateImportUser(List<UserImportDTO> userImportDTOS);
+    void saveUserImport(List<UserImportDTO> userImportDTOS);
 }

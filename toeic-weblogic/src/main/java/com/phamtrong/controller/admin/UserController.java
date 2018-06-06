@@ -43,6 +43,7 @@ public class UserController extends HttpServlet {
     private final String READ_EXCEL = "read_excel";
     private final String VALIDATE_IMPORT = "validate_import";
     private final String LIST_USER_IMPORT = "list_user_import";
+    private final String IMPORT_DATA = "import_data";
     ResourceBundle bundle = ResourceBundle.getBundle("ApplicationResources");
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -51,7 +52,7 @@ public class UserController extends HttpServlet {
         UserDTO pojo = command.getPojo();
         if (command.getUrlType() != null && command.getUrlType().equals(WebConstant.URL_LIST)) {
             Map<String, Object> mapProperty = new HashMap<String, Object>();
-            Object[] objects = SingletonServiceUtil.getUserDaoInstance().findByProperty(mapProperty, command.getSortExpression(), command.getSortDirection(), command.getFirstItem(), command.getMaxPageItems());
+            Object[] objects = SingletonServiceUtil.getUserServiceInstance().findByProperty(mapProperty, command.getSortExpression(), command.getSortDirection(), command.getFirstItem(), command.getMaxPageItems());
             //command.setMaxPageItems(5);
             command.setListResult((List<UserDTO>) objects[1]);
             command.setTotalItems(Integer.parseInt(objects[0].toString()));
@@ -73,9 +74,9 @@ public class UserController extends HttpServlet {
             rd.forward(request, response);
         } else if (command.getUrlType() != null && command.getUrlType().equals(WebConstant.URL_EDIT)) {
             if (pojo != null && pojo.getUserId() != null) {
-                command.setPojo(SingletonServiceUtil.getUserDaoInstance().findById(pojo.getUserId()));
+                command.setPojo(SingletonServiceUtil.getUserServiceInstance().findById(pojo.getUserId()));
             }
-            command.setRoles(SingletonServiceUtil.getRoleDaoInstance().findAll());
+            command.setRoles(SingletonServiceUtil.getRoleServiceInstance().findAll());
             request.setAttribute(WebConstant.FORM_ITEM, command);
             RequestDispatcher rd = request.getRequestDispatcher("/views/admin/user/edit.jsp");
             rd.forward(request, response);
@@ -118,10 +119,10 @@ public class UserController extends HttpServlet {
                     roleDTO.setRoleId(command.getRoleId());
                     pojo.setRoleDTO(roleDTO);
                     if (pojo != null && pojo.getUserId() != null) {
-                        SingletonServiceUtil.getUserDaoInstance().updateUser(pojo);
+                        SingletonServiceUtil.getUserServiceInstance().updateUser(pojo);
                         request.setAttribute(WebConstant.MESSAGE_RESPONSE, WebConstant.REDIRECT_UPDATE);
                     } else {
-                        SingletonServiceUtil.getUserDaoInstance().saveUser(pojo);
+                        SingletonServiceUtil.getUserServiceInstance().saveUser(pojo);
                         request.setAttribute(WebConstant.MESSAGE_RESPONSE, WebConstant.REDIRECT_INSERT);
                     }
                 }
@@ -146,6 +147,13 @@ public class UserController extends HttpServlet {
                     response.sendRedirect("/admin-user-import-validate.html?urlType=validate_import");
                 }
             }
+            if(command.getUrlType()!=null && command.getUrlType().equals(IMPORT_DATA)){
+                List<UserImportDTO> userImportDTOS= (List<UserImportDTO>) SessionUtil.getInstance().getValue(request,LIST_USER_IMPORT);
+                //code logic import data
+                SingletonServiceUtil.getUserServiceInstance().saveUserImport(userImportDTOS);
+                SessionUtil.getInstance().remove(request,LIST_USER_IMPORT);
+                response.sendRedirect("/admin-user-list.html?urlType=url_list");
+            }
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             request.setAttribute(WebConstant.MESSAGE_RESPONSE, WebConstant.REDIRECT_ERROR);
@@ -158,7 +166,7 @@ public class UserController extends HttpServlet {
             validateRequireField(item);
             validateDuplicate(item,stringSet);
         }
-        SingletonServiceUtil.getUserDaoInstance().validateImportUser(excelValues);
+        SingletonServiceUtil.getUserServiceInstance().validateImportUser(excelValues);
     }
 
     private void validateDuplicate(UserImportDTO item, Set<String> stringSet) {

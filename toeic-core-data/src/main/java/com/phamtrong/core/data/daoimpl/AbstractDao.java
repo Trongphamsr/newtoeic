@@ -103,6 +103,7 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID,T>
 
         }catch (HibernateException e){
             transaction.rollback();
+            log.error(e.getMessage(),e);
             throw e;
         }finally {
             session.close();
@@ -130,15 +131,16 @@ public Object[] findByProperty(Map<String,Object> property, String sortExpressio
         try {
 
             StringBuilder sql1 = new StringBuilder("from ");
-            sql1.append(getPersistenceClassName());
+            sql1.append(getPersistenceClassName()).append(" where 1=1 ");
             if (property.size()>0){
                 for (int i1=0;i1<params.length;i1++){
-                    if (i1==0){
-                        sql1.append(" where ").append(params[i1]).append("= :"+params[i1]+"");
-                    }else {
-                        sql1.append(" and ").append(params[i1]).append("= :"+params[i1]+"");
-
-                    }
+                    sql1.append(" and ").append("LOWER("+params[i1]+") LIKE '%' || :"+params[i1]+" || '%'");
+//                    if (i1==0){
+//                        sql1.append(" where ").append(params[i1]).append("= :"+params[i1]+"");
+//                    }else {
+//                        sql1.append(" and ").append(params[i1]).append("= :"+params[i1]+"");
+//
+//                    }
                 }
             }
 //            if(property!=null&& value !=null){
@@ -168,16 +170,16 @@ public Object[] findByProperty(Map<String,Object> property, String sortExpressio
 
             list=query1.list();
             StringBuilder sql2 = new StringBuilder("select count(*) from ");
-            sql2.append(getPersistenceClassName());
+            sql2.append(getPersistenceClassName()).append(" where 1=1 ");
 
             if (property.size()>0){
                 for (int k=0;k<params.length;k++){
-                    if (k==0){
-                        sql2.append(" where ").append(params[k]).append("= :"+params[k]+"");
-                    }else {
-                        sql2.append(" and ").append(params[k]).append("= :"+params[k]+"");
-
-                    }
+                    sql2.append(" and ").append("LOWER("+params[k]+") LIKE '%' || :"+params[k]+" || '%'");
+//                    if (k==0){
+//                        sql2.append(" where ").append(params[k]).append("= :"+params[k]+"");
+//                    }else {
+//                        sql2.append(" and ").append(params[k]).append("= :"+params[k]+"");
+//                    }
                 }
             }
 
@@ -199,6 +201,7 @@ public Object[] findByProperty(Map<String,Object> property, String sortExpressio
             transaction.commit();
         }catch (HibernateException e){
             transaction.rollback();
+            log.error(e.getMessage(),e);
             throw e;
         }finally {
             session.close();
@@ -221,8 +224,30 @@ public Object[] findByProperty(Map<String,Object> property, String sortExpressio
             transaction.commit();
         }catch (HibernateException e){
             transaction.rollback();
+            log.error(e.getMessage(),e);
             throw e;
         }
         return count;
+    }
+
+    @Override
+    public T findEqualUnique(String property, Object value) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction= session.beginTransaction();
+        T result = null;
+        try {
+            String sql =" FROM "+getPersistenceClassName()+" model WHERE model."+property+"= :value ";
+            Query query = session.createQuery(sql.toString());
+            query.setParameter("value",value);
+            result= (T) query.uniqueResult();
+//            transaction.commit();
+        }catch (HibernateException e){
+            transaction.rollback();
+            log.error(e.getMessage(),e);
+            throw e;
+        }finally {
+            session.close();
+        }
+        return result;
     }
 }

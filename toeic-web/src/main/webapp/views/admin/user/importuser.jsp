@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/common/taglib.jsp"%>
 <c:url var="validateExcel" value="/admin-user-import-validate.html"/>
+<c:url var="importExcel" value="/admin-user-import.html"/>
 <html>
 <head>
     <title><fmt:message key="label.user.import.excel" bundle="${lang}"/></title>
@@ -68,7 +69,8 @@
                                 <fmt:message key="label.user.import" bundle="${lang}"/>
                             </button>
                         </c:if>
-                        <input type="hidden" name="urlType" value="read_excel"/>
+                        <%--<input type="hidden" name="urlType" value="read_excel"/>--%>
+                        <input type="hidden" name="urlType" id="urlType"/>
                     </form>
                 </div>
             </div>
@@ -78,8 +80,17 @@
 <script>
     $(document).ready(function () {
         $('#validateData').click(function () {
+            $('#urlType').val('read_excel');
             $('#formImport').submit();
         });
+
+        $('#importData').click(function(){
+           $('#urlType').val('import_data');
+            $('#formImport').prop('enctype',false);
+            $('#formImport').attr('action','${importExcel}');
+            $('#formImport').submit();
+        });
+
     });
 </script>
 

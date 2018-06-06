@@ -9,21 +9,21 @@ public class SingletonServiceUtil {
     private static RoleServiceeImpl roleServiceceImpl = null;
     private static ListenGuidelineServiceceImpl listenGuidelineServiceceImpl = null;
 
-    public static UserServiceceImpl getUserDaoInstance(){
+    public static UserServiceceImpl getUserServiceInstance(){
         if(userServiceceImpl==null){
             userServiceceImpl= new UserServiceceImpl();
         }
         return userServiceceImpl;
     }
 
-    public static RoleServiceeImpl getRoleDaoInstance(){
+    public static RoleServiceeImpl getRoleServiceInstance(){
         if(roleServiceceImpl==null){
             roleServiceceImpl= new RoleServiceeImpl();
         }
         return roleServiceceImpl;
     }
 
-    public static ListenGuidelineServiceceImpl getListenGuidelineDaoInstance(){
+    public static ListenGuidelineServiceceImpl getListenGuidelineServiceInstance(){
         if(listenGuidelineServiceceImpl==null){
             listenGuidelineServiceceImpl= new ListenGuidelineServiceceImpl();
         }
