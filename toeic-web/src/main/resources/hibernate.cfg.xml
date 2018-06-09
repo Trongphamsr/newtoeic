@@ -18,5 +18,10 @@
         <mapping class="com.phamtrong.core.persistence.entity.RoleEntity"/>
         <mapping class="com.phamtrong.core.persistence.entity.ListenguidelineEntity"/>
         <mapping class="com.phamtrong.core.persistence.entity.CommentEntity"/>
+        <mapping class="com.phamtrong.core.persistence.entity.ExaminationEntity"/>
+        <mapping class="com.phamtrong.core.persistence.entity.ResultEntity"/>
+        <mapping class="com.phamtrong.core.persistence.entity.ExaminationQuestionEntity"/>
+        <mapping class="com.phamtrong.core.persistence.entity.ExerciseEntity"/>
+        <mapping class="com.phamtrong.core.persistence.entity.ExerciseQuestionEntity"/>
     </session-factory>
 </hibernate-configuration>

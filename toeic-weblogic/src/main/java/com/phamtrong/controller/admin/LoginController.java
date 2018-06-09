@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 @WebServlet(urlPatterns = {"/login.html","/logout.html", "/login-change.html","/login-show-change.html"})
@@ -68,6 +69,7 @@ public class LoginController extends HttpServlet {
 
         if(pojo!=null) {
             CheckLogin login = SingletonServiceUtil.getUserServiceInstance().checkLogin(pojo.getName(), pojo.getPassword());
+            //Timestamp timestamp = new Timestamp();
             if (login.isUserExist()) {
                 SessionUtil.getInstance().putValue(request,WebConstant.LOGIN_NAME,pojo.getName());
                 if (login.getRoleName().equals(WebConstant.ROLE_ADMIN)) {

@@ -12,24 +12,26 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
-
-    @Column(name="password")
+    @Column(name = "password")
     private String password;
 
-    @Column(name="fullname")
+    @Column(name = "fullname")
     private String fullName;
-    @Column(name="reateddate")
+
+    @Column(name = "reateddate")
     private Timestamp createdDate;
 
-    //    1 role nhieu user
     @ManyToOne
-    @JoinColumn(name="roleid")
+    @JoinColumn(name = "roleid")
     private RoleEntity roleEntity;
 
     @OneToMany(mappedBy = "userEntity", fetch = FetchType.LAZY)
     private List<CommentEntity> commentEntityList;
+
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    private List<ResultEntity> results;
 
     public Integer getUserId() {
         return userId;
@@ -86,4 +88,13 @@ public class UserEntity {
     public void setCommentEntityList(List<CommentEntity> commentEntityList) {
         this.commentEntityList = commentEntityList;
     }
+
+    public List<ResultEntity> getResults() {
+        return results;
+    }
+
+    public void setResults(List<ResultEntity> results) {
+        this.results = results;
+    }
+
 }

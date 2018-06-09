@@ -1,13 +1,17 @@
 package com.phamtrong.core.web.utils;
 
-import com.phamtrong.servicece.impl.ListenGuidelineServiceceImpl;
-import com.phamtrong.servicece.impl.RoleServiceeImpl;
-import com.phamtrong.servicece.impl.UserServiceceImpl;
+import com.phamtrong.servicece.impl.*;
 
 public class SingletonServiceUtil {
     private static UserServiceceImpl userServiceceImpl = null;
     private static RoleServiceeImpl roleServiceceImpl = null;
     private static ListenGuidelineServiceceImpl listenGuidelineServiceceImpl = null;
+    private static CommentServiceceImpl commentServiceImpl = null;
+    private static ExaminationQuestionServiceceImpl examinationQuestionServiceImpl = null;
+    private static ExaminationServiceceImpl examinationServiceImpl = null;
+    private static ExerciseQuestionServiceceImpl exerciseQuestionServiceImpl = null;
+    private static ExerciseServiceceImpl exerciseServiceImpl = null;
+    //private static ResultServiceImpl resultServiceImpl = null;
 
     public static UserServiceceImpl getUserServiceInstance(){
         if(userServiceceImpl==null){
@@ -29,4 +33,46 @@ public class SingletonServiceUtil {
         }
         return listenGuidelineServiceceImpl;
     }
+
+    public static CommentServiceceImpl getCommentServiceInstance() {
+        if (commentServiceImpl == null) {
+            commentServiceImpl = new CommentServiceceImpl();
+        }
+        return commentServiceImpl;
+    }
+
+    public static ExaminationQuestionServiceceImpl getExaminationQuestionServiceInstance() {
+        if (examinationQuestionServiceImpl == null) {
+            examinationQuestionServiceImpl = new ExaminationQuestionServiceceImpl();
+        }
+        return examinationQuestionServiceImpl;
+    }
+
+    public static ExaminationServiceceImpl getExaminationServiceInstance() {
+        if (examinationServiceImpl == null) {
+            examinationServiceImpl = new ExaminationServiceceImpl();
+        }
+        return examinationServiceImpl;
+    }
+
+    public static ExerciseQuestionServiceceImpl getExerciseQuestionServiceInstance() {
+        if (exerciseQuestionServiceImpl == null) {
+            exerciseQuestionServiceImpl = new ExerciseQuestionServiceceImpl();
+        }
+        return exerciseQuestionServiceImpl;
+    }
+
+    public static ExerciseServiceceImpl getExerciseServiceInstance() {
+        if (exerciseServiceImpl == null) {
+            exerciseServiceImpl = new ExerciseServiceceImpl();
+        }
+        return exerciseServiceImpl;
+    }
+
+//    public static ResultServiceImpl getResultServiceInstance() {
+//        if (resultServiceImpl == null) {
+//            resultServiceImpl = new ResultServiceImpl();
+//        }
+//        return resultServiceImpl;
+//    }
 }
